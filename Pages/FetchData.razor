@@ -1,0 +1,154 @@
+﻿@page "/fetchdata"
+@using TaskTracker.Server.Data
+@inject WeatherForecastService ForecastService
+
+<PageTitle>Weather forecast</PageTitle>
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if(pageState == PageState.Default)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Is Executed</th>
+                <th>Id</th>
+                <th>Description</th>
+                <th><button @onclick="@(() => Add())">Add</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in tasks.Where(x => !x.IsDeleted))
+        {
+                <tr>
+                    <td><InputCheckbox @bind-Value="@task.IsExecuted" /></td>
+                    <td>@task.Id</td>
+                    <td>@task.Description</td>
+                    <td>
+                        <button @onclick="@(() => StartEdit(task.Id))">Edit</button>
+                        <button @onclick="@(() => Delete(task.Id))">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    @if (pageState == PageState.Add)
+    {
+        <p>Add Row</p>
+    }
+    else if (pageState == PageState.Edit)
+    {
+        <p>Edit Row @current.Id</p>
+    }
+    <input type="text" @bind-value="current.Description"/>
+
+    <button @onclick="@(() => Cancel())">Cancel</button>
+
+    if (pageState == PageState.Add)
+    {
+        <button @onclick="@(() => Add())">Add</button>
+    }
+    else if (pageState == PageState.Edit)
+    {
+        <button @onclick="@(() => ContinueEdit())">Edit</button>
+    }
+}
+
+@code {
+    public List<TaskEntity> tasks = new List<TaskEntity>();
+    public PageState pageState = PageState.Default;
+
+    public TaskEntity current;
+
+    public class TaskEntity
+    {
+        public long Id { get; set; }
+        public string Description { get; set; } = string.Empty;
+        public bool IsExecuted { get; set; } = false;
+        public bool IsDeleted{ get; set; }
+    }
+
+    public enum PageState
+    {
+        Default = 0,
+        Add = 1,
+        Edit = 2
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        current = new TaskEntity();
+
+        tasks = new List<TaskEntity>()
+        {
+            new() { Id = 1, Description = "Task 1" },
+            new() { Id = 2, Description = "Task 2" },
+            new() { Id = 3, Description = "Task 3" }
+        };
+    }
+
+    public void Add()
+    {
+        if (pageState == PageState.Default)
+        {
+            current = new TaskEntity();
+
+            pageState = PageState.Add;
+        }
+        else if (pageState == PageState.Add)
+        {
+            tasks.Add(new() { Id = tasks.Last().Id + 1, Description = current.Description });
+
+            pageState = PageState.Default;
+        }
+    }
+
+    public void StartEdit(long id)
+    {
+        if (pageState == PageState.Default)
+        {
+            var task = tasks.First(x => x.Id == id);
+
+            current = new TaskEntity()
+            {
+                Id = task.Id,
+                Description = task.Description
+            };
+
+            pageState = PageState.Edit;
+        }
+    }
+
+    public void ContinueEdit()
+    {
+        if (pageState == PageState.Edit)
+        {
+            var task = tasks.First(x => x.Id == current.Id);
+
+            task.Description = current.Description;
+
+            current = new TaskEntity();
+            pageState = PageState.Default;
+        }
+    }
+
+    public void Delete(long id)
+    {
+        var task = tasks.First(x => x.Id == id);
+        task.IsDeleted = true;
+    }
+
+    public void Cancel()
+    {
+        if (pageState != PageState.Default)
+        {
+            current = new TaskEntity();
+            pageState = PageState.Default;
+        }
+    }
+}
