@@ -1,5 +1,8 @@
 ﻿@page "/fetchdata"
 @using TaskTracker.Server.Data
+@using TaskTracker.Server.Models.Entities
+@using TaskTracker.Server.Repositories
+@inject TaskRepository tskrepository;
 @inject WeatherForecastService ForecastService
 
 <PageTitle>Weather forecast</PageTitle>
@@ -65,14 +68,6 @@ else
 
     public TaskEntity current;
 
-    public class TaskEntity
-    {
-        public long Id { get; set; }
-        public string Description { get; set; } = string.Empty;
-        public bool IsExecuted { get; set; } = false;
-        public bool IsDeleted{ get; set; }
-    }
-
     public enum PageState
     {
         Default = 0,
@@ -84,15 +79,17 @@ else
     {
         current = new TaskEntity();
 
-        tasks = new List<TaskEntity>()
-        {
-            new() { Id = 1, Description = "Task 1" },
-            new() { Id = 2, Description = "Task 2" },
-            new() { Id = 3, Description = "Task 3" }
-        };
+        // tasks = new List<TaskEntity>()
+        // {
+        //     new() { Id = 1, Description = "Task 1" },
+        //     new() { Id = 2, Description = "Task 2" },
+        //     new() { Id = 3, Description = "Task 3" }
+        // };
+
+        tasks = await tskrepository.GetAll();
     }
 
-    public void Add()
+    public async Task Add()
     {
         if (pageState == PageState.Default)
         {
@@ -102,17 +99,21 @@ else
         }
         else if (pageState == PageState.Add)
         {
-            tasks.Add(new() { Id = tasks.Last().Id + 1, Description = current.Description });
+            // tasks.Add(new() { Id = tasks.Last().Id + 1, Description = current.Description });
+            await tskrepository.Add(new TaskEntity() { Description = current.Description, IsExecuted = current.IsExecuted });
+
+            tasks = await tskrepository.GetAll();
 
             pageState = PageState.Default;
         }
     }
 
-    public void StartEdit(long id)
+    public async Task StartEdit(int id)
     {
         if (pageState == PageState.Default)
         {
-            var task = tasks.First(x => x.Id == id);
+            // var task = tasks.First(x => x.Id == id);
+            var task = await tskrepository.Get(id);
 
             current = new TaskEntity()
             {
@@ -124,23 +125,32 @@ else
         }
     }
 
-    public void ContinueEdit()
+    public async Task ContinueEdit()
     {
         if (pageState == PageState.Edit)
         {
-            var task = tasks.First(x => x.Id == current.Id);
+            // var task = tasks.First(x => x.Id == current.Id);
+            var task = await tskrepository.Get(current.Id);
 
-            task.Description = current.Description;
+            await tskrepository.Update(current);
 
             current = new TaskEntity();
+
+            tasks = await tskrepository.GetAll();
+
             pageState = PageState.Default;
         }
     }
 
-    public void Delete(long id)
+    public async Task Delete(int id)
     {
-        var task = tasks.First(x => x.Id == id);
-        task.IsDeleted = true;
+        // var task = tasks.First(x => x.Id == id);
+        
+        // task.IsDeleted = true;
+
+        await tskrepository.Delete(id);
+
+        tasks = await tskrepository.GetAll();
     }
 
     public void Cancel()

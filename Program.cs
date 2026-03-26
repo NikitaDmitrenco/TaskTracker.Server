@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 using TaskTracker.Server.Data;
+using TaskTracker.Server.Models.DbContexts;
+using TaskTracker.Server.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddDbContextFactory<TaskDbContext>(options 
+                    => options.UseNpgsql("Server=localhost;Port=5432;User Id=postgres;Password=mysecretpassword;Database=TaskTracker;"));
+
+builder.Services.AddScoped<TaskRepository>();
 
 var app = builder.Build();
 

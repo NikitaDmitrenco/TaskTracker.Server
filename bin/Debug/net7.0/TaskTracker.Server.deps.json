@@ -9,10 +9,19 @@
       "TaskTracker.Server/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "7.0.18",
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.18",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.18"
         },
         "runtime": {
           "TaskTracker.Server.dll": {}
+        }
+      },
+      "Humanizer.Core/2.14.1": {
+        "runtime": {
+          "lib/net6.0/Humanizer.dll": {
+            "assemblyVersion": "2.14.0.0",
+            "fileVersion": "2.14.1.48190"
+          }
         }
       },
       "Microsoft.EntityFrameworkCore/7.0.18": {
@@ -34,6 +43,20 @@
           }
         }
       },
+      "Microsoft.EntityFrameworkCore.Design/7.0.18": {
+        "dependencies": {
+          "Humanizer.Core": "2.14.1",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.18",
+          "Microsoft.Extensions.DependencyModel": "7.0.0",
+          "Mono.TextTemplating": "2.2.1"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll": {
+            "assemblyVersion": "7.0.18.0",
+            "fileVersion": "7.0.1824.16810"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/7.0.18": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "7.0.18"
@@ -42,6 +65,30 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll": {
             "assemblyVersion": "7.0.18.0",
             "fileVersion": "7.0.1824.16810"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Tools/7.0.18": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "7.0.18"
+        }
+      },
+      "Microsoft.Extensions.DependencyModel/7.0.0": {
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.DependencyModel.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Mono.TextTemplating/2.2.1": {
+        "dependencies": {
+          "System.CodeDom": "4.4.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Mono.TextTemplating.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.1.1"
           }
         }
       },
@@ -66,6 +113,14 @@
             "fileVersion": "7.0.18.0"
           }
         }
+      },
+      "System.CodeDom/4.4.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.CodeDom.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.25519.3"
+          }
+        }
       }
     }
   },
@@ -74,6 +129,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Humanizer.Core/2.14.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
+      "path": "humanizer.core/2.14.1",
+      "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore/7.0.18": {
       "type": "package",
@@ -89,12 +151,40 @@
       "path": "microsoft.entityframeworkcore.abstractions/7.0.18",
       "hashPath": "microsoft.entityframeworkcore.abstractions.7.0.18.nupkg.sha512"
     },
+    "Microsoft.EntityFrameworkCore.Design/7.0.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4pYsUcvdY8V4i+ZH6xIM8LfX3YdaRp7kZ0QvgRdzGuJ/dneX8zRKLE0rlqFRb8xQqbw6TuFssgFBkh0c23R3oA==",
+      "path": "microsoft.entityframeworkcore.design/7.0.18",
+      "hashPath": "microsoft.entityframeworkcore.design.7.0.18.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore.Relational/7.0.18": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-19T8HjEkqyvuPf6C3WPM1B0h10/ezf/+KHPFQxp8ODHN3YKjV/5tKyuZyjRULa3EcfTW4TiaOqPIfs5WSVfwYw==",
       "path": "microsoft.entityframeworkcore.relational/7.0.18",
       "hashPath": "microsoft.entityframeworkcore.relational.7.0.18.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Tools/7.0.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AuSrOsR/DN5OYuiaYxr+zk5bHgHB7o5TFK7ZbBp8rqKLw9eZSwgBfHi8pYvEMzvgw3z7TJvvcuDT5qVQbZcUUQ==",
+      "path": "microsoft.entityframeworkcore.tools/7.0.18",
+      "hashPath": "microsoft.entityframeworkcore.tools.7.0.18.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyModel/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oONNYd71J3LzkWc4fUHl3SvMfiQMYUCo/mDHDEu76hYYxdhdrPYv6fvGv9nnKVyhE9P0h20AU8RZB5OOWQcAXg==",
+      "path": "microsoft.extensions.dependencymodel/7.0.0",
+      "hashPath": "microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512"
+    },
+    "Mono.TextTemplating/2.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
+      "path": "mono.texttemplating/2.2.1",
+      "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
     },
     "Npgsql/7.0.7": {
       "type": "package",
@@ -109,6 +199,13 @@
       "sha512": "sha512-W+mFtJ1D4kSsCIBMScaq3tq8jdoR0Healb6knhSKqnlIoGGQwkHltHMsFeWacieLQPA+e4UrIgucfDpRpRXQRA==",
       "path": "npgsql.entityframeworkcore.postgresql/7.0.18",
       "hashPath": "npgsql.entityframeworkcore.postgresql.7.0.18.nupkg.sha512"
+    },
+    "System.CodeDom/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2sCCb7doXEwtYAbqzbF/8UAeDRMNmPaQbU2q50Psg1J9KzumyVVCgKQY8s53WIPTufNT0DpSe9QRvVjOzfDWBA==",
+      "path": "system.codedom/4.4.0",
+      "hashPath": "system.codedom.4.4.0.nupkg.sha512"
     }
   }
 }

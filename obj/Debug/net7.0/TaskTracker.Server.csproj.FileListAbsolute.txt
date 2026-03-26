@@ -39,3 +39,9 @@ C:\Users\dmitr\Z_Progects\TaskTracker\TaskTracker.Server\obj\Debug\net7.0\refint
 C:\Users\dmitr\Z_Progects\TaskTracker\TaskTracker.Server\obj\Debug\net7.0\TaskTracker.Server.pdb
 C:\Users\dmitr\Z_Progects\TaskTracker\TaskTracker.Server\obj\Debug\net7.0\TaskTracker.Server.genruntimeconfig.cache
 C:\Users\dmitr\Z_Progects\TaskTracker\TaskTracker.Server\obj\Debug\net7.0\ref\TaskTracker.Server.dll
+C:\Users\dmitr\Z_Progects\TaskTracker\TaskTracker.Server\bin\Debug\net7.0\Humanizer.dll
+C:\Users\dmitr\Z_Progects\TaskTracker\TaskTracker.Server\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\dmitr\Z_Progects\TaskTracker\TaskTracker.Server\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\dmitr\Z_Progects\TaskTracker\TaskTracker.Server\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\dmitr\Z_Progects\TaskTracker\TaskTracker.Server\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\dmitr\Z_Progects\TaskTracker\TaskTracker.Server\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt

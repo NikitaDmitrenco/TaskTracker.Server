@@ -6,13 +6,16 @@ namespace TaskTracker.Server.Models.DbContexts;
 public class TaskDbContext : DbContext
 {
     public DbSet<TaskEntity> Tasks { get; set; }
-    public TaskDbContext()
+    public TaskDbContext(DbContextOptions<TaskDbContext> options) : base(options)
     {
-        
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        optionsBuilder.UseNpgsql("Server=localhost;Port=5432;User Id=postgres;Password=mysecretpassword;Database=TaskTracker;");
+        modelBuilder.Entity<TaskEntity>(builder => 
+        {
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Description).HasMaxLength(200);
+        });
     }
 }   
