@@ -7,8 +7,64 @@
   "targets": {
     ".NETCoreApp,Version=v7.0": {
       "TaskTracker.Server/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.18",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.18"
+        },
         "runtime": {
           "TaskTracker.Server.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore/7.0.18": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.18"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.dll": {
+            "assemblyVersion": "7.0.18.0",
+            "fileVersion": "7.0.1824.16810"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.18": {
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "assemblyVersion": "7.0.18.0",
+            "fileVersion": "7.0.1824.16810"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Relational/7.0.18": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.18"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll": {
+            "assemblyVersion": "7.0.18.0",
+            "fileVersion": "7.0.1824.16810"
+          }
+        }
+      },
+      "Npgsql/7.0.7": {
+        "runtime": {
+          "lib/net7.0/Npgsql.dll": {
+            "assemblyVersion": "7.0.7.0",
+            "fileVersion": "7.0.7.0"
+          }
+        }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL/7.0.18": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.18",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.18",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.18",
+          "Npgsql": "7.0.7"
+        },
+        "runtime": {
+          "lib/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
+            "assemblyVersion": "7.0.18.0",
+            "fileVersion": "7.0.18.0"
+          }
         }
       }
     }
@@ -18,6 +74,41 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Microsoft.EntityFrameworkCore/7.0.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zk4JC8m9T55dwtqBnnXar1jtI7q4bZuSo3PI8/Iq7QbVk0D2Yrvx0mZJb/5tj8O+ghwT56XzDuN3641iumXqmg==",
+      "path": "microsoft.entityframeworkcore/7.0.18",
+      "hashPath": "microsoft.entityframeworkcore.7.0.18.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KCEaYiYM6bVGKo/dLRDkXn1zZ1Vn6f4uG0nb2iis/jCju16hUOX/GAOLx1FhD2cIQcHRvtmYFZnm5/anHFdhtg==",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.18",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.7.0.18.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Relational/7.0.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-19T8HjEkqyvuPf6C3WPM1B0h10/ezf/+KHPFQxp8ODHN3YKjV/5tKyuZyjRULa3EcfTW4TiaOqPIfs5WSVfwYw==",
+      "path": "microsoft.entityframeworkcore.relational/7.0.18",
+      "hashPath": "microsoft.entityframeworkcore.relational.7.0.18.nupkg.sha512"
+    },
+    "Npgsql/7.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A3BjyNebHjw/MahM6n3VnKbxrj/hQnMROEkUNUTjhUVv7yvcGnfBgw/FszahT9uCR23AVD2N/0Tvw1aHgxr9Gg==",
+      "path": "npgsql/7.0.7",
+      "hashPath": "npgsql.7.0.7.nupkg.sha512"
+    },
+    "Npgsql.EntityFrameworkCore.PostgreSQL/7.0.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W+mFtJ1D4kSsCIBMScaq3tq8jdoR0Healb6knhSKqnlIoGGQwkHltHMsFeWacieLQPA+e4UrIgucfDpRpRXQRA==",
+      "path": "npgsql.entityframeworkcore.postgresql/7.0.18",
+      "hashPath": "npgsql.entityframeworkcore.postgresql.7.0.18.nupkg.sha512"
     }
   }
 }
