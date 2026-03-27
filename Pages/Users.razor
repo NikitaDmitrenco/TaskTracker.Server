@@ -1,8 +1,7 @@
-﻿@page "/tasks"
+﻿@page "/users"
 @using TaskTracker.Server.Data
 @using TaskTracker.Server.Models.Entities
 @using TaskTracker.Server.Models.Repositories
-@inject TaskRepository tskrepository;
 @inject UserRepository usrepository;
 @inject WeatherForecastService ForecastService
 
@@ -18,18 +17,18 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Is Executed</th>
-                <th>Description</th>
+                <th>Name</th>
+                <th>Email</th>
                 <th><button @onclick="@(() => Add())">Add</button></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var task in tasks.Where(x => !x.IsDeleted))
+            @foreach (var task in users.Where(x => !x.IsDeleted))
         {
                 <tr>
-                    <td><InputCheckbox @bind-Value="@task.IsExecuted" /></td>
                     <td>@task.Id</td>
-                    <td>@task.Description</td>
+                    <td>@task.Name</td>
+                    <td>@task.Email</td>
                     <td>
                         <button @onclick="@(() => StartEdit(task.Id))">Edit</button>
                         <button @onclick="@(() => Delete(task.Id))">Delete</button>
@@ -50,14 +49,8 @@ else
         <p>Edit Row @current.Id</p>
     }
     <br/>
-    <input type="text" @bind-value="current.Description"/>
-    <select class="form-select" @bind="current.UserId">
-        <option value="">User</option>
-        @foreach (var user in users)
-        {
-            <option value="@user.Id">@user.Name</option>
-        }
-    </select>
+    <input type="text" @bind-value="current.Name"/>
+    <input type="text" @bind-value="current.Email"/>
 
     <br/>
     <button @onclick="@(() => Cancel())">Cancel</button>
@@ -73,11 +66,10 @@ else
 }
 
 @code {
-    public List<TaskEntity> tasks = new List<TaskEntity>();
     public List<UserEntity> users = new List<UserEntity>();
     public PageState pageState = PageState.Default;
 
-    public TaskEntity current;
+    public UserEntity current;
 
     public enum PageState
     {
@@ -88,9 +80,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        current = new TaskEntity();
+        current = new UserEntity();
 
-        tasks = await tskrepository.GetAll();
         users = await usrepository.GetAll();
     }
 
@@ -98,15 +89,15 @@ else
     {
         if (pageState == PageState.Default)
         {
-            current = new TaskEntity();
+            current = new UserEntity();
 
             pageState = PageState.Add;
         }
         else if (pageState == PageState.Add)
         {
-            await tskrepository.Add(new TaskEntity() { Description = current.Description, IsExecuted = current.IsExecuted, UserId = current.UserId });
+            await usrepository.Add(new UserEntity() { Name = current.Name, Email= current.Email});
 
-            tasks = await tskrepository.GetAll();
+            users = await usrepository.GetAll();
 
             pageState = PageState.Default;
         }
@@ -116,12 +107,12 @@ else
     {
         if (pageState == PageState.Default)
         {
-            var task = await tskrepository.Get(id);
+            var task = await usrepository.Get(id);
 
-            current = new TaskEntity()
+            current = new UserEntity()
             {
                 Id = task.Id,
-                Description = task.Description
+                Name = task.Email
             };
 
             pageState = PageState.Edit;
@@ -132,13 +123,13 @@ else
     {
         if (pageState == PageState.Edit)
         {
-            var task = await tskrepository.Get(current.Id);
+            var task = await usrepository.Get(current.Id);
 
-            await tskrepository.Update(current);
+            await usrepository.Update(current);
 
-            current = new TaskEntity();
+            current = new UserEntity();
 
-            tasks = await tskrepository.GetAll();
+            users = await usrepository.GetAll();
 
             pageState = PageState.Default;
         }
@@ -146,16 +137,16 @@ else
 
     public async Task Delete(int id)
     {
-        await tskrepository.Delete(id);
+        await usrepository.Delete(id);
 
-        tasks = await tskrepository.GetAll();
+        users = await usrepository.GetAll();
     }
 
     public void Cancel()
     {
         if (pageState != PageState.Default)
         {
-            current = new TaskEntity();
+            current = new UserEntity();
             pageState = PageState.Default;
         }
     }
